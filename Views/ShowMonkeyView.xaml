@@ -6,33 +6,34 @@
     xmlns:viewmodel="clr-namespace:MonkeysMVVM.ViewModels"
     Title="ShowMonkeyView"
     x:DataType="viewmodel:ShowMonkeyViewModel">
-    <VerticalStackLayout Margin="20">
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding Name}"
-            VerticalOptions="Center" />
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding Location}"
-            VerticalOptions="Center" />
-        <Grid
-            Margin="15"
-            BackgroundColor="Gray"
-            RowDefinitions="*,*"
-            RowSpacing="5">
-            <Image
-                HeightRequest="200"
-                Source="{Binding ImageUrl}"
-                WidthRequest="200" />
-            <Button
-                Grid.Row="1"
-                Margin="10"
-                Command="{Binding ShowMonkeyImage}"
-                HeightRequest="100"
-                Text="Show Image"
-                WidthRequest="200" />
-        </Grid>
-        <Button Command="{Binding ShowMonkeyCommand}" Text="Get Monkey" />
-
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Margin="20">
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding Name}"
+                VerticalOptions="Center" />
+            <Label
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                Text="{Binding Location}"/>
+            <Grid
+                Margin="15"
+                BackgroundColor="Gray"
+                RowDefinitions="*,*"
+                RowSpacing="5">
+                <Image
+                    HeightRequest="200"
+                    Source="{Binding ImageUrl}"
+                    WidthRequest="200" />
+                <Button
+                    Grid.Row="1"
+                    Margin="10"
+                    Command="{Binding ShowMonkeyImage}"
+                    HeightRequest="100"
+                    Text="Show Image"
+                    WidthRequest="200" />
+            </Grid>
+            <Button Command="{Binding ShowMonkeyCommand}" Text="Get Monkey" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

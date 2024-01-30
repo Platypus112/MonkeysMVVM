@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MonkeysMVVM.Views.FindMonkeyByLocationPage"
-             Title="FindMonkeyByLocationPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="MonkeysMVVM.Views.FindMonkeyByLocationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:MonkeysMVVM.ViewModels"
+    Title="FindMonkeyByLocationPage"
+    x:DataType="viewmodel:FindMonkeyByLocationPageViewModel">
+    <ScrollView>
+        
+        <VerticalStackLayout
+        
+            >
+            <Entry 
+                Placeholder="Enter Loaction"
+                Text="{Binding Entry}"
+                />
+            <Button Command="{Binding FindMonkeyByLocationCommand}" Text="Find Monkey" />
+
+            <Label
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                Text="{Binding Count}"
+                />
+
+            <Border WidthRequest="200" HeightRequest="200" Padding="0" Margin="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="100"/>
+                </Border.StrokeShape>
+                <Image
+                    Source="{Binding ImageUrl}"
+                    HorizontalOptions="Center"
+                    Aspect="Fill"
+                   />
+            </Border>
+        
+
+            <Label 
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                Text="{Binding Name}"
+                TextColor="DimGray"
+                   />
+
+            <Label
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                Text="{Binding Location}"
+                />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
