@@ -14,7 +14,7 @@ namespace MonkeysMVVM.ViewModels
 {
     public class ShowMonkeyViewModel:ViewModel
     {
-        Monkey monkey;
+        protected Monkey monkey;
         public ICommand ShowMonkeyCommand { get; set; }
         public ICommand ShowMonkeyImage { get; set; }   
         private string name;
@@ -52,7 +52,6 @@ namespace MonkeysMVVM.ViewModels
         {
             ShowMonkeyCommand = new Command(GetMonkey);
             ShowMonkeyImage = new Command(ShowImage,()=>monkey!=null);//new Command(()=>{if (monkey != null)ImageUrl = monkey.ImageUrl;)}
-
         }
 
         private void GetMonkey()
