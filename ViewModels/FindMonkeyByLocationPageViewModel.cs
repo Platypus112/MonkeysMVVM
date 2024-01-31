@@ -11,20 +11,21 @@ namespace MonkeysMVVM.ViewModels
 {
     public class FindMonkeyByLocationPageViewModel:ViewModel
     {
-        protected Monkey currentMonkey;
-        private readonly MonkeyList monkeys;
+
+        private List<Monkey> locatedMonkeys;
+        private readonly MonkeyList service;
         public ICommand FindMonkeyByLocationCommand { get; set; }
         public FindMonkeyByLocationPageViewModel()
         {
-            monkeys=new MonkeyList();
-            FindMonkeyByLocationCommand = new Command(FindMonkey,()=>string.IsNullOrEmpty(entry));
+            service=new MonkeyList();
+            FindMonkeyByLocationCommand = new Command(FindMonkey,()=>!string.IsNullOrEmpty(Entry));
         }
         private void FindMonkey()
         {
-            currentMonkey = monkeys.Monkeys.Where(x => x.Location == entry).FirstOrDefault();
-            Count = "Monkeys found:" + monkeys.Monkeys.Count(x => x.Location == entry).ToString();
+            locatedMonkeys = service.FindMonkeysByLocation(entry);
+            Count = "Monkeys found:" + locatedMonkeys.Count;
             Entry = "";
-            if (count== "Monkeys found:0")
+            if (locatedMonkeys.Count<=0)
             {
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png";
                 Location = entry;
@@ -32,9 +33,9 @@ namespace MonkeysMVVM.ViewModels
 ;           }
             else
             {
-                ImageUrl = currentMonkey.ImageUrl;
-                Location= currentMonkey.Location;
-                Name = currentMonkey.Name;
+                ImageUrl = locatedMonkeys[0].ImageUrl;
+                Location= locatedMonkeys[0].Location;
+                Name = locatedMonkeys[0].Name;
             }
         }
 

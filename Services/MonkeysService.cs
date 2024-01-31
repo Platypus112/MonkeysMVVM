@@ -15,6 +15,10 @@ namespace MonkeysMVVM.Services
             this.Monkeys = new List<Monkey>();
             FillList();
         }
+        public List<Monkey> FindMonkeysByLocation(string location)
+        {
+            return Monkeys.Where(x => x.Location == location).ToList();
+        }
 
         private void FillList()
         {
